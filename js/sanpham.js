@@ -53,16 +53,16 @@ function chuyenDoiTuongSanPhamThanhHTML(sanPham) {
   html += '<div class="product-item">';
   html += '<div class="product-top">';
   html +=
-    ' <a href="" class="product-thumb"><img src="' +
+    ' <a href="html/product-detail.html" class="product-thumb"><img src="' +
     sanPham.hinhAnh +
     '" alt="" /></a>';
   html +=
-    '<a href="" class="buy-now" onclick="onClickDuaVaoGioHang(\'' +
+    '<a href="javascript:void(0)" class="buy-now" onclick="onClickDuaVaoGioHang(\'' +
     sanPham.id +
     "')\">Mua ngay</a>";
   html += ' <div class="product-info">';
-  html += '  <a href="" class="product-cat">' + sanPham.phanLoai + "</a>";
-  html += '<a href="" class="product-name" >' + sanPham.Ten + "</a>";
+  html += '  <a href="#" class="product-cat">' + sanPham.phanLoai + "</a>";
+  html += '<a href="html/product-detail.html" class="product-name" >' + sanPham.Ten + "</a>";
   html += ' <div class="product-price">' + sanPham.Gia + "</div>";
   html += "</div>";
   html += "</div>";
