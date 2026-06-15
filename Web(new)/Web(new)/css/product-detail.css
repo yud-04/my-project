@@ -1,0 +1,271 @@
+/* CSS cho trang chi tiết sản phẩm - product-detail.css */
+
+/* Styles cho trang chi tiết sản phẩm */
+.product-detail {
+  padding: 120px 0 60px;
+  background: #fff;
+}
+
+.product-detail-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
+}
+
+.product-images {
+  flex: 1;
+  max-width: 500px;
+}
+
+.main-image {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.thumbnail-images {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+}
+
+.thumbnail {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.thumbnail:hover,
+.thumbnail.active {
+  border-color: #d4af37;
+}
+
+.product-info {
+  flex: 1;
+  max-width: 500px;
+}
+
+.breadcrumb {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.breadcrumb a {
+  color: #666;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: #d4af37;
+}
+
+.product-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.product-price {
+  font-size: 32px;
+  font-weight: bold;
+  color: #d4af37;
+  margin-bottom: 20px;
+}
+
+.product-rating {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+}
+
+.star {
+  color: #ffd700;
+  font-size: 18px;
+}
+
+.rating-text {
+  color: #666;
+  font-size: 14px;
+}
+
+.product-description {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.product-options {
+  margin-bottom: 30px;
+}
+
+.option-group {
+  margin-bottom: 20px;
+}
+
+.option-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.size-options {
+  display: flex;
+  gap: 10px;
+}
+
+.size-option {
+  padding: 10px 15px;
+  border: 2px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.size-option:hover,
+.size-option.selected {
+  border-color: #d4af37;
+  background: #d4af37;
+  color: #fff;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.quantity-label {
+  font-weight: bold;
+  color: #333;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+}
+
+.quantity-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: #f5f5f5;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+.quantity-btn:hover {
+  background: #d4af37;
+  color: #fff;
+}
+
+.quantity-input {
+  width: 60px;
+  height: 40px;
+  border: none;
+  text-align: center;
+  font-size: 16px;
+  outline: none;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.btn {
+  padding: 15px 30px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-primary {
+  background: #d4af37;
+  color: #fff;
+  flex: 1;
+}
+
+.btn-primary:hover {
+  background: #b8941f;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: #fff;
+  color: #d4af37;
+  border: 2px solid #d4af37;
+  flex: 1;
+}
+
+.btn-secondary:hover {
+  background: #d4af37;
+  color: #fff;
+}
+
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .product-detail-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .product-images,
+  .product-info {
+    max-width: 100%;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+  }
+  
+  .product-title {
+    font-size: 24px;
+  }
+  
+  .product-price {
+    font-size: 28px;
+  }
+}
+
+/* Animation cho hình ảnh */
+.main-image {
+  transition: transform 0.3s ease;
+}
+
+.main-image:hover {
+  transform: scale(1.05);
+}

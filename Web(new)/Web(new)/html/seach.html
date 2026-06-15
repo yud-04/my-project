@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tìm Kiếm Sản Phẩm</title>
+    <link rel="stylesheet" href="../css/Web.css" />
+    <link rel="stylesheet" href="../css/search.css" />
+  </head>
+  <body>
+    <header class="header fixed">
+      <div class="body">
+        <div class="main-content">
+          <a href="Web.html"
+            ><img src="../pict/logo moi.png" alt="logo" class="logo"
+          /></a>
+          <nav class="nav">
+            <ul>
+              <li><a href="#">Nhẫn</a></li>
+              <li><a href="#">Bông tai</a></li>
+              <li><a href="#">Vòng tay</a></li>
+              <li><a href="#">Dây chuyền</a></li>
+            </ul>
+          </nav>
+          <div class="login">
+            <ul>
+              <li>
+                <a href="LoginWeb.html">Đăng Nhập</a> / <a href="#">Đăng Ký</a>
+              </li>
+              <li><a href="#">Giỏ Hàng</a></li>
+              <li><a href="#">Tìm Kiếm</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="search-section">
+      <h1>Tìm Kiếm Sản Phẩm</h1>
+      <div class="search-form">
+        <input
+          type="text"
+          id="searchBox"
+          class="search-box"
+          placeholder="Nhập tên sản phẩm..."
+        />
+        <button onclick="performSearch()" class="search-btn">Tìm kiếm</button>
+      </div>
+    </section>
+
+    <section class="search-results" id="results">
+      <ul class="products" id="productList"></ul>
+    </section>
+
+    <footer class="footer">
+      <div class="main-content">
+        <div class="footer-column">
+          <a href="#"
+            ><img src="../pict/logo moi.png" alt="logo" class="logo fpic"
+          /></a>
+        </div>
+        <div class="footer-column">
+          <h3>Vivienne Westwood</h3>
+          <ul>
+            <li>Dây chuyền</li>
+            <li>Vòng tay</li>
+            <li>Khuyên tai</li>
+            <li>Nhẫn</li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Khách hàng</h3>
+          <ul>
+            <li>Chính sách bảo hành</li>
+            <li>Vận chuyển</li>
+            <li>Thanh toán</li>
+            <li>Hướng dẫn sử dụng</li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Về chúng tôi</h3>
+          <ul>
+            <li>Giới thiệu</li>
+            <li>Liên hệ</li>
+            <li>Bảo mật</li>
+            <li>Tuyển dụng</li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const products = [
+        {
+          name: "Nhẫn Swarovski Chính Hãng Vittore Ring",
+          category: "Nhẫn",
+          price: "2.500.000",
+          image: "nhẫn/nhẫn 1.jpg",
+        },
+        {
+          name: "Nhẫn Swarovski Chính Hãng Matrix Ring",
+          category: "Nhẫn",
+          price: "2.000.000",
+          image: "nhẫn/nhẫn 2.jpg",
+        },
+        {
+          name: "Dây Chuyền Swarovski Thiên Nga",
+          category: "Dây chuyền",
+          price: "2.000.000",
+          image: "day chuyen/dc 1.jpg",
+        },
+        {
+          name: "Vòng Tay Swarovski Love Is Around",
+          category: "Vòng",
+          price: "5.000.000",
+          image: "vòng lắc/sp 1.jpg",
+        },
+        {
+          name: "Vòng Tay Swarovski Chính Hãng Constella Bangle",
+          category: "Vòng",
+          price: "4.300.000",
+          image: "vòng lắc/sp 2.jpg",
+        },
+        {
+          name: "Vòng Tay Swarovski Chính Hãng Tactic Bangle",
+          category: "Vòng",
+          price: "4.700.000",
+          image: "vòng lắc/sp 3.jpg",
+        },
+        {
+          name: "Nhẫn Pandora Chính Hãng Elevated Heart Ring",
+          category: "Nhẫn",
+          price: "3.200.000",
+          image: "nhẫn/nhẫn 6.jpg",
+        },
+        {
+          name: "Dây Chuyền Cầu Hôn Candy Gema",
+          category: "Dây chuyền",
+          price: "4.200.000",
+          image: "day chuyen/dc 7.jpg",
+        },
+        {
+          name: "Dây Chuyền Swarovski Cỏ 4 Lá Chính Hãng Clover Idyllia Pendant",
+          category: "Dây chuyền",
+          price: "4.000.000",
+          image: "day chuyen/dc 6.jpg",
+        },
+      ];
+
+      function removeVietnameseTones(str) {
+        return str
+          .normalize("NFD")
+          .replace(/[̀-ͯ]/g, "")
+          .replace(/đ/g, "d")
+          .replace(/Đ/g, "D");
+      }
+
+      function performSearch() {
+        const query = document
+          .getElementById("searchBox")
+          .value.trim()
+          .toLowerCase();
+        const searchTerm = removeVietnameseTones(query);
+        const results = products.filter(
+          (p) =>
+            removeVietnameseTones(p.name.toLowerCase()).includes(searchTerm) ||
+            removeVietnameseTones(p.category.toLowerCase()).includes(searchTerm)
+        );
+        displayResults(results);
+      }
+
+      function displayResults(results) {
+        const container = document.getElementById("results");
+        const ul = document.getElementById("productList");
+        ul.innerHTML = "";
+
+        if (results.length === 0) {
+          container.style.display = "block";
+          ul.innerHTML = "<p>Không tìm thấy sản phẩm nào.</p>";
+          return;
+        }
+
+        container.style.display = "block";
+
+        results.forEach((p) => {
+          const li = document.createElement("li");
+          li.innerHTML = `
+          <div class="product-item">
+            <div class="product-top">
+              <a href="#" class="product-thumb">
+                <img src="${p.image}" alt="${p.name}">
+              </a>
+              <a href="#" class="buy-now">Mua ngay</a>
+            </div>
+            <div class="product-info">
+              <a href="#" class="product-cat">${p.category}</a>
+              <a href="#" class="product-name">${p.name}</a>
+              <div class="product-price">${p.price}</div>
+            </div>
+          </div>
+        `;
+          ul.appendChild(li);
+        });
+      }
+    </script>
+  </body>
+</html>

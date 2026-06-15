@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="/assingment/sanpham.js"></script>
+    <script src="giohang.js"></script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div class="headline">
+        <h3>Sản Phẩm</h3>
+      </div>
+      <ul id="products">
+        <!-- <li>
+          <div class="product-item">
+            <div class="product-top">
+              <a href="" class="product-thumb">
+                <img src="/assingment/sp 1.jpg" alt="" />
+              </a>
+              <a href="" class="buy-now">Mua ngay</a> -->
+        <!--mua ngay-->
+        <!-- </div>   
+            <div class="product-info">
+              <a href="" class="product-cat">Nhẫn</a>
+              <a href="" class="product-name"
+                >Nhẫn Swarovski Chính Hãng Vittore Ring</a
+              >
+              <div class="product-price">2.000.000</div>
+            </div>
+          </div> -->
+        <!-- </li> -->
+      </ul>
+    </div>
+    <script>
+      var jsondanhSachSanPham = localStorage.getItem("danhSachSanPham");
+      var danhSachSanPham = JSON.parse(jsondanhSachSanPham);
+      console.log(danhSachSanPham);
+
+      var HTML = chuyenDanhSachDoiTuongSanPhamThanhHTML(danhSachSanPham);
+
+      var nodeProducts = document.getElementById("products");
+      nodeProducts.innerHTML = HTML;
+
+      function onClickDuaVaoGioHang(idSanPham) {
+        alert("onclick dua vao gio hang " + idSanPham);
+
+        // láy danh sách giỏ hàng trong lclstrg lên -> hàm để lấy toan bộ item giỏ hàng
+        var danhSachItemGioHang = layDanhSachItemGioHang();
+
+        // theem item vao gio hang
+        var coTonTaiTrongDanhSachItemGioHang = false;
+        for (var i = 0; i < danhSachItemGioHang.length; i++) {
+          var itemGioHangHienTai = danhSachItemGioHang[i];
+
+          if (itemGioHangHienTai.idSanPham == idSanPham) {
+            danhSachItemGioHang[i].soLuong++;
+            coTonTaiTrongDanhSachItemGioHang = true;
+          }
+        }
+
+        if (coTonTaiTrongDanhSachItemGioHang == false) {
+          var itemGioHang = taoDoiTuongGioHang(idSanPham, 1);
+          danhSachItemGioHang.push(itemGioHang);
+        }
+
+        // Lưu trữ lại vao local storage
+        luuVaoLocalStorage(danhSachItemGioHang);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/Web.css" />
+    <script defer src="../js/sanpham.js"></script>
+    <script defer src="../js/giohang.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      img {
+        width: 100%;
+      }
+
+      input {
+        padding: 5px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      .giohang {
+        border: 1px solid #ddd;
+        box-shadow: 2px 2px 4px #ddd;
+        padding: 20px;
+        margin: auto;
+        max-width: 1100px;
+        margin-top: 40px;
+      }
+      .giohang .tieuDe {
+        font-size: 20px;
+        color: black;
+        margin-bottom: 20px;
+      }
+      .item-gio-hang {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .giohang .tieuDeItemGioHang {
+        margin-bottom: 20px;
+        font-weight: 600;
+      }
+
+      .item-gio-hang .hinh-anh img {
+        width: 60px;
+        height: 60px;
+      }
+
+      .item-gio-hang .hinh-anh {
+        width: 60px;
+      }
+      .item-gio-hang input {
+        width: 100%;
+      }
+      .item-gio-hang .hinh-anh,
+      .soLuong,
+      .tongTien,
+      .hanhDong {
+        flex: 1;
+        margin-left: 20px;
+      }
+      .gia .giaban {
+        color: red;
+        font-weight: 600;
+      }
+
+      .tongTien {
+        color: red;
+        font-weight: 600;
+      }
+      .item-gio-hang .gia {
+        flex: 2;
+      }
+
+      .item-gio-hang .ten {
+        flex: 3;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header fixed">
+      <div class="body">
+        <div class="main-content">
+          <!-- ===========Logo============ -->
+          <a href="#"
+            ><img src="../pict/logo moi.png" alt="logo" class="logo"
+          /></a>
+          <!--============== Thanh dieu huong================ -->
+          <nav class="nav">
+            <ul>
+              <li><a href="#">Nhẫn</a></li>
+              <li><a href="#">Bông tai</a></li>
+              <li><a href="#">Vòng tay</a></li>
+              <li><a href="#">Dây chuyền</a></li>
+            </ul>
+          </nav>
+          <div class="login">
+            <ul>
+              <li>
+                <a href="LoginWeb.html">Đăng Nhập</a> /
+                <a href="#">Đăng Ký</a>
+              </li>
+              <li><a href="#">Giỏ Hàng</a></li>
+              <li><a href="#">Tìm Kiếm</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- danh sach gio hang -->
+    <div class="giohang" id="gio-hang">
+      <h1 class="tieuDe">Danh sách sản phẩm</h1>
+
+      <div class="item-gio-hang tieuDeItemGioHang">
+        <div class="hinh-anh"></div>
+        <p class="ten">Sản phẩm</p>
+        <div class="gia">Đơn giá</div>
+        <p class="soLuong">Số lượng</p>
+        <p class="tongTien">Tổng tiền</p>
+        <div class="hanhDong">
+          <p>Thao tác</p>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- ----------------footer----------------- -->
+    <footer class="footer">
+      <div class="main-content">
+        <div class="footer-column">
+          <a href="#"
+            ><img src="../pict/logo moi.png" alt="logo" class="logo fpic"
+          /></a>
+        </div>
+        <div class="footer-column">
+          <h3>DHJ</h3>
+          <ul>
+            <li>Dây chuyền</li>
+            <li>Vòng tay</li>
+            <li>Khuyên tai</li>
+            <li>Nhẫn</li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Khách hàng</h3>
+          <ul>
+            <li>Chính sách bảo hành</li>
+            <li>Vận chuyển</li>
+            <li>Thanh toán</li>
+            <li>Hướng dẫn sử dụng</li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Về chúng tôi</h3>
+          <ul>
+            <li>Giới thiệu</li>
+            <li>Liên hệ: 0916054495</li>
+            <li><a href="https://zalo.me/pc">Zalo</a></li>
+            <li>
+              <a href="https://www.facebook.com/?locale=vi_VN">FaceBook</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </body>
+  <script>
+    hienThiDanhSachItemGioHang();
+
+    function hienThiDanhSachItemGioHang() {
+      var danhSachItemGioHang = layDanhSachItemGioHang();
+
+      var HTML = chuyenDanhSachItemGioHangSangHTML(danhSachItemGioHang);
+
+      var nodeGioHang = document.getElementById("gio-hang");
+      nodeGioHang.innerHTML = nodeGioHang.innerHTML + HTML;
+    }
+
+    // Chuyển 1 danh sách thành html
+    function chuyenDanhSachItemGioHangSangHTML(danhSachItemGioHang) {
+      var htmlTong = "";
+      for (var i = 0; i < danhSachItemGioHang.length; i++) {
+        htmlTong =
+          htmlTong + chuyenDoiTuongItemGioHangSangHTML(danhSachItemGioHang[i]);
+      }
+      return htmlTong;
+    }
+
+    function chuyenDoiTuongItemGioHangSangHTML(itemGioHang) {
+      var sanPham = truyXuatSanPhamTheoID(itemGioHang.idSanPham);
+
+      console.log(sanPham);
+
+      var tongTien = itemGioHang.soLuong * sanPham.Gia;
+
+      var html =
+        '<div class="giohang">\n' +
+        '      <div class="item-gio-hang">\n' +
+        '        <div class="hinh-anh">\n' +
+        '          <img src="' +
+        sanPham.hinhAnh +
+        '" alt="" />\n' +
+        "          </div>\n" +
+        '          <p class="ten">' +
+        sanPham.Ten +
+        "</p>\n" +
+        '          <div class="gia">\n' +
+        '            <span class="giaban">' +
+        sanPham.Gia +
+        "</span>\n" +
+        "          </div>\n" +
+        '          <input type="number" class="soLuong" value="' +
+        itemGioHang.soLuong +
+        '" />\n' +
+        '          <p class="tongTien">' +
+        tongTien +
+        "</p>\n" +
+        "\n" +
+        '          <div class="hanhDong">\n' +
+        "            <button onclick='onClickXoaItem()'>xóa</button>\n" +
+        "          </div>\n" +
+        "        </div>\n" +
+        "      </div>\n" +
+        "    </div>";
+      return html;
+    }
+  </script>
+</html>

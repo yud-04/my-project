@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="sanpham.js"></script>
+    <script src="hotro.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+      .them-moi-san-pham {
+        width: 50%;
+        border: 1px solid #ddd;
+        margin: auto;
+        padding: 30px;
+        margin-top: 30px;
+        box-shadow: 2px 2px 5px #444;
+      }
+
+      .them-moi-san-pham label,
+      input {
+        width: 100%;
+        display: block;
+      }
+
+      .them-moi-san-pham label {
+        margin-top: 20px;
+      }
+
+      .them-moi-san-pham input {
+        margin-top: 5px;
+        padding: 10px 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+
+      .them-moi-san-pham button {
+        width: 100%;
+        margin-top: 20px;
+        padding: 10px 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: aquamarine;
+        color: black;
+      }
+
+      .them-moi-san-pham button:hover {
+        background-color: darkblue;
+        color: #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="them-moi-san-pham">
+      <label for="hinhAnh">Hình ảnh sản phẩm</label>
+      <input type="text" id="product-thumb" />
+
+      <label for="Ten">Tên sản phẩm</label>
+      <input type="text" id="product-name" />
+
+      <label for="Gia">Giá tiền</label>
+      <input type="number" id="product-price" />
+
+      <label for="phanLoai">Phân loại</label>
+      <input type="text" id="product-cat" />
+
+      <button onclick="onclickTaoSanPham()">Tao san pham</button>
+    </div>
+    <script>
+      // lay danh sách sản phẩm đã có trong localstorage
+      var danhSachSanPham = JSON.parse(localStorage.getItem("danhSachSanPham"));
+      if (danhSachSanPham == null) danhSachSanPham = new Array();
+      console.log(danhSachSanPham);
+
+      // 1. onclick tao san pham-------------
+      function onclickTaoSanPham() {
+        // truy cap cac node de lay du lieu
+        console.log("goi ham onclickTaoSanPham()");
+        var nodeHinhAnh = document.getElementById("product-thumb");
+        var hinhAnh = nodeHinhAnh.value;
+        console.log("hinh anh la: " + hinhAnh);
+        nodeHinhAnh.value = "";
+
+        var nodeTen = document.getElementById("product-name");
+        var Ten = nodeTen.value;
+        console.log("Ten la: " + Ten);
+        nodeTen.value = "";
+
+        var nodeGia = document.getElementById("product-price");
+        var Gia = parseInt(nodeGia.value);
+        console.log("Gia:  " + Gia);
+        nodeGia.value = "";
+
+        var nodephanLoai = document.getElementById("product-cat");
+        var phanLoai = nodephanLoai.value;
+        console.log("Phan loai:  " + phanLoai);
+        nodephanLoai.value = "";
+        // 2. lay du lieu ng dung nhap vao-----
+        var sanPham = TaoDoiTuongSanPham(hinhAnh, Ten, Gia, phanLoai, null);
+        console.log(sanPham);
+
+        console.log("ten cua san pham: " + sanPham.Ten);
+        // dua san pham vao danh sach
+        danhSachSanPham.push(sanPham);
+        console.log("Danh sach san pham la: ");
+        console.log(danhSachSanPham);
+
+        // lưu trữ danh sách sản phẩm xuống localstorage
+        var jsonDanhSachSanPham = JSON.stringify(danhSachSanPham);
+        localStorage.setItem("danhSachSanPham", jsonDanhSachSanPham);
+        alert("Thêm sản phẩm thành công");
+      }
+
+      // 3. tao ra  doi tuong------
+    </script>
+  </body>
+</html>
